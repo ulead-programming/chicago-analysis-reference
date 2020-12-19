@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+
+import com.pedroguzman.ds.chicagoanalysis.models.ElasticWorkerArray;
 import com.pedroguzman.ds.chicagoanalysis.models.Worker;
 
 public class CSVReader {
@@ -17,6 +19,8 @@ public class CSVReader {
         String dataCsvFileLocation = "/Users/peter/Downloads/data.csv";
         String csvSeparator = ",";
         String line = "";
+
+        ElasticWorkerArray workers = new ElasticWorkerArray();
 
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(dataCsvFileLocation))){
             while((line = bufferedReader.readLine()) != null){
@@ -33,8 +37,12 @@ public class CSVReader {
                         person[7],
                         person[8]
                 );
-                System.out.println(personObj.toString());
+                workers.addWorker(personObj);
             } // WHILE ENDS
+
+            Facts fact = new Facts(workers.getWorkerArray());
+
+
         } catch(FileNotFoundException fileNotFoundException){
             System.out.println("The file provided is not valid");
         } catch (IOException ioException){

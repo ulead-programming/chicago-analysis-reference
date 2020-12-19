@@ -28,6 +28,13 @@ public class Worker extends Person {
         this.typicalAmountOfHours = this.parseTypicalAmountOfHoursInput(typicalAmountOfHours);
         this.annualSalary = this.parseAnnualSalaryInput(annualSalary);
         this.hourlyRate = this.parseHourlyRateInput(hourlyRate);
+        this.computeAnnualSalaryForHourlyRate();
+    }
+
+    private void computeAnnualSalaryForHourlyRate(){
+        if(this.isHourly){
+            this.annualSalary = this.typicalAmountOfHours * 52 * this.hourlyRate;
+        }
     }
 
     /**
@@ -62,6 +69,11 @@ public class Worker extends Person {
         return typicalAmountOfHours;
     }
 
+    /**
+     *
+     * @param annualSalaryColumnData
+     * @return
+     */
     private double parseAnnualSalaryInput(String annualSalaryColumnData){
         double annualSalary = 0.0;
         if(!annualSalaryColumnData.isEmpty()){
@@ -76,9 +88,14 @@ public class Worker extends Person {
         return annualSalary;
     } // METHOD PARSE
 
+    /**
+     *
+     * @param hourlyRateColumnData
+     * @return
+     */
     private double parseHourlyRateInput(String hourlyRateColumnData){
         double hourlyRateInput = 0.0;
-        if(!hourlyRateColumnData.isEmpty()){
+        if(hourlyRateColumnData.compareTo(" ") != 0){
             try {
                 hourlyRateInput = Double.parseDouble(hourlyRateColumnData);
             }
@@ -90,13 +107,22 @@ public class Worker extends Person {
         return hourlyRateInput;
     }
 
-    public String toString(){
-        // Ustedes deben implementar este método de manera que devuelva todos los atributos de la clase
-        return "-------------------------------------------------------\n" +
-                "Name="+ this.name +
-                "\nLastname=" + this.lastname +
-                "\nTypicalAmountOfHours=" + this.typicalAmountOfHours;
+    @Override
+    public String toString() {
+        return "Worker{" +
+                "name='" + name + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", department='" + department + '\'' +
+                ", jobTitle='" + jobTitle + '\'' +
+                ", isPartTime=" + isPartTime +
+                ", isHourly=" + isHourly +
+                ", typicalAmountOfHours=" + typicalAmountOfHours +
+                ", annualSalary=" + annualSalary +
+                ", hourlyRate=" + hourlyRate +
+                '}';
     }
+
+
 
     /**
      *
@@ -110,4 +136,32 @@ public class Worker extends Person {
         }
         return isPartTime;
     } // METHOD PARSE PART TIME INPUT ENDS ------------------------------------
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public boolean isPartTime() {
+        return isPartTime;
+    }
+
+    public boolean isHourly() {
+        return isHourly;
+    }
+
+    public int getTypicalAmountOfHours() {
+        return typicalAmountOfHours;
+    }
+
+    public double getAnnualSalary() {
+        return annualSalary;
+    }
+
+    public double getHourlyRate() {
+        return hourlyRate;
+    }
 } // CLASS WORKER ENDS --------------------------------------------------------
