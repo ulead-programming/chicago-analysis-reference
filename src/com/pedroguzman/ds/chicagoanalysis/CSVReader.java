@@ -14,12 +14,13 @@ public class CSVReader {
      */
     public static void main(String[] args){
 
-        String dataCsvFileLocation = "/Users/subvertic/Downloads/data.csv";
+        String dataCsvFileLocation = "/Users/peter/Downloads/data.csv";
         String csvSeparator = ",";
         String line = "";
 
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(dataCsvFileLocation))){
             while((line = bufferedReader.readLine()) != null){
+                line += " ";
                 String[] person = line.split(csvSeparator);
                 Worker personObj = new Worker(
                         person[1],

@@ -30,29 +30,72 @@ public class Worker extends Person {
         this.hourlyRate = this.parseHourlyRateInput(hourlyRate);
     }
 
+    /**
+     *
+     * @param isHourlyColumnData
+     * @return
+     */
     private boolean parseIsHourlyInput(String isHourlyColumnData){
-        // Ustedes deben implementar este método para que valide el input en texto y asignen el valor booleano correspondiente
-        return false;
-    }
+        boolean isHourly = false;
+        if(isHourlyColumnData.compareTo("Hourly") == 0){
+            isHourly = true;
+        }
+        return isHourly;
+    } // METHOD PARSE IS HOURLY ENDS ------------------------------------------ //
 
+    /**
+     *
+     * @param typicalAmountOfHoursColumnData
+     * @return
+     */
     private int parseTypicalAmountOfHoursInput(String typicalAmountOfHoursColumnData){
-        // Ustedes deben implementar este método
-        return 0;
+        int typicalAmountOfHours = 0;
+        if(!typicalAmountOfHoursColumnData.isEmpty()){
+            try {
+                typicalAmountOfHours = Integer.parseInt(typicalAmountOfHoursColumnData);
+            }
+            catch (NumberFormatException exc){
+                System.out.println(typicalAmountOfHoursColumnData + " is not a valid number");
+                exc.printStackTrace();
+            } // CATCH ENDS
+        } // IF ENDS
+        return typicalAmountOfHours;
     }
 
     private double parseAnnualSalaryInput(String annualSalaryColumnData){
-        // Ustedes deben implementar este método
-        return 0.0;
-    }
+        double annualSalary = 0.0;
+        if(!annualSalaryColumnData.isEmpty()){
+            try {
+                annualSalary = Double.parseDouble(annualSalaryColumnData);
+            }
+            catch (NumberFormatException exc){
+                System.out.println(annualSalaryColumnData + " is not a valid double");
+                exc.printStackTrace();
+            } // CATCH ENDS
+        } // IF ENDS
+        return annualSalary;
+    } // METHOD PARSE
 
     private double parseHourlyRateInput(String hourlyRateColumnData){
-        // Ustedes deben implementar este método
-        return 0.0;
+        double hourlyRateInput = 0.0;
+        if(!hourlyRateColumnData.isEmpty()){
+            try {
+                hourlyRateInput = Double.parseDouble(hourlyRateColumnData);
+            }
+            catch (NumberFormatException exc){
+                System.out.println(hourlyRateColumnData + " is not a valid double");
+                exc.printStackTrace();
+            } // CATCH ENDS
+        } // IF ENDS
+        return hourlyRateInput;
     }
 
     public String toString(){
         // Ustedes deben implementar este método de manera que devuelva todos los atributos de la clase
-        return "";
+        return "-------------------------------------------------------\n" +
+                "Name="+ this.name +
+                "\nLastname=" + this.lastname +
+                "\nTypicalAmountOfHours=" + this.typicalAmountOfHours;
     }
 
     /**
